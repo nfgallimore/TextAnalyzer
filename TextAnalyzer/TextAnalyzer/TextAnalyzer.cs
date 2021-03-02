@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.IO;
 
 namespace TextAnalyzer
@@ -28,9 +29,11 @@ namespace TextAnalyzer
             }
         }
 
-        public static string RemoveNonAlpha(string input)
+        public static List<string> GetWords(string input)
         {
-            return input;
+            //MatchCollection matches = notAlpha.Matches(text);
+            //bool isMatch = notAlpha.IsMatch(text);
+            return new List<string>();
         }
     }
 }
