@@ -85,7 +85,6 @@ namespace TextAnalyzer
                 { "jump", 1 },
                 { "jumped", 4 },
                 { "jumps", 1 },
-                { "ran", 1 },
                 { "run", 2 },
                 { "running", 3 },
                 { "runs", 1 }
@@ -99,7 +98,7 @@ namespace TextAnalyzer
             result.ShouldContainKey("jump");
             result.ShouldContainKey("run");
             result["jump"].ShouldBe(8);
-            result["run"].ShouldBe(7);
+            result["run"].ShouldBe(6);
         }
     }
 }

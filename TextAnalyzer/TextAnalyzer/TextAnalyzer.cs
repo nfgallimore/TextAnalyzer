@@ -96,8 +96,24 @@ namespace TextAnalyzer
 
         public static Dictionary<string, int> StemWords(Dictionary<string, int> dictionary)
         {
-            Dictionary<string, int> stemmedDictionary = new Dictionary<string, int>();
-            return stemmedDictionary;
+            PorterStemmer porterStemmer = new PorterStemmer();
+
+            Dictionary<string, int> stemDictionary = new Dictionary<string, int>();
+
+            foreach(KeyValuePair<string, int> word in dictionary)
+            {
+                string stem = porterStemmer.StemWord(word.Key);
+                if (stemDictionary.ContainsKey(stem))
+                {
+                    stemDictionary[stem] += word.Value;
+                }
+                else
+                {
+                    stemDictionary.Add(stem, word.Value);
+                }
+            }
+
+            return stemDictionary;
         }
     }
 }
