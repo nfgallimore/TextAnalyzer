@@ -93,5 +93,11 @@ namespace TextAnalyzer
                 return words;
             }
         }
+
+        public static Dictionary<string, int> StemWords(Dictionary<string, int> dictionary)
+        {
+            Dictionary<string, int> stemmedDictionary = new Dictionary<string, int>();
+            return stemmedDictionary;
+        }
     }
 }

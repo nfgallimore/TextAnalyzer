@@ -74,5 +74,32 @@ namespace TextAnalyzer
             result.ShouldContain(new KeyValuePair<string, int>("lazy", 1));
             result.ShouldContain(new KeyValuePair<string, int>("dog", 1));
         }
+
+        [Test]
+        public void RecordFrequencyForAllStemsOfWord()
+        {
+            // Arrange
+            Dictionary<string, int> dictionaryInput = new Dictionary<string, int>
+            {
+                { "jumping", 2 },
+                { "jump", 1 },
+                { "jumped", 4 },
+                { "jumps", 1 },
+                { "ran", 1 },
+                { "run", 2 },
+                { "running", 3 },
+                { "runs", 1 }
+            };
+
+            // Act
+            Dictionary<string, int> result = TextAnalyzer.StemWords(dictionaryInput);
+
+            // Assert
+            result.Count.ShouldBe(2);
+            result.ShouldContainKey("jump");
+            result.ShouldContainKey("run");
+            result["jump"].ShouldBe(8);
+            result["run"].ShouldBe(7);
+        }
     }
 }
