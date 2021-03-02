@@ -15,19 +15,19 @@ namespace TextAnalyzer
             string text = "`~ ** 的  :) The quick   ** @#! brown fox jumps  @#! . >< over the lazy dog. :) بِيَ";
 
             // Act
-            List<string> words = TextAnalyzer.GetWords(text);
+            Dictionary<string, int> words = TextAnalyzer.GetWords(text);
 
             // Assert
             words.Count.ShouldBe(8);
-            words.ShouldContain("The");
-            words.ShouldContain("quick");
-            words.ShouldContain("brown");
-            words.ShouldContain("fox");
-            words.ShouldContain("jumps");
-            words.ShouldContain("over");
-            words.ShouldContain("the");
-            words.ShouldContain("lazy");
-            words.ShouldContain("dog");
+            words["the"].ShouldBe(2);
+            words["quick"].ShouldBe(1);
+            words["brown"].ShouldBe(1);
+            words["fox"].ShouldBe(1);
+            words["jumps"].ShouldBe(1);
+            words["over"].ShouldBe(1);
+            // note omitting "the", should be case insensitive and combine duplicate words
+            words["lazy"].ShouldBe(1);
+            words["dog"].ShouldBe(1);
         }
     }
 }

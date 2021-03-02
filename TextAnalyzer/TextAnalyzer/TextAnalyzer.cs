@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
+using System.Text.RegularExpressions;
 
 namespace TextAnalyzer
 {
@@ -29,11 +31,31 @@ namespace TextAnalyzer
             }
         }
 
-        public static List<string> GetWords(string input)
+        public static Dictionary<string, int> GetWords(string text)
         {
-            //MatchCollection matches = notAlpha.Matches(text);
-            //bool isMatch = notAlpha.IsMatch(text);
-            return new List<string>();
+            text = text.ToLower();
+
+            Regex notAlphaOrSpace = new Regex("[^a-zA-Z\\s]");
+            text = notAlphaOrSpace.Replace(text, string.Empty);
+
+            string[] words = text.Split(' ');
+
+            Dictionary<string, int> dictionary = new Dictionary<string, int>();
+
+            foreach (string word in words)
+            {
+                if (dictionary.ContainsKey(word))
+                {
+                    dictionary[word]++;
+                } 
+                else
+                {
+                    dictionary.Add(word, 1);
+                }
+            }
+
+            dictionary.Remove(string.Empty);
+            return dictionary;
         }
     }
 }
