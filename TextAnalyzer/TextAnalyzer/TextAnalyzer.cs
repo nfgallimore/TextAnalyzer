@@ -59,7 +59,7 @@ namespace TextAnalyzer
             return dictionary;
         }
 
-        public static Dictionary<string, int> RemoveStopWords(Dictionary<string, int> dictionary)
+        public static Dictionary<string, int> RemoveStopWords(Dictionary<string, int> dictionary, List<string> stopWords)
         {
             return dictionary;
         }
