@@ -31,7 +31,30 @@ namespace TextAnalyzer
             }
         }
 
-        public static Dictionary<string, int> GetWords(string text)
+        public static List<string> GetStopWords(string filepath)
+        {
+            List<string> words = new List<string>();
+            try
+            {
+                using (StreamReader stringReader = File.OpenText(filepath))
+                {
+                    string line;
+                    while ((line = stringReader.ReadLine()) != null)
+                    {
+                        words.Add(line);
+                    }
+                }
+
+                return words;
+            }
+            catch (FileNotFoundException e)
+            {
+                Console.WriteLine($"{filepath} was not found!");
+                return words;
+            }
+        }
+
+        public static Dictionary<string, int> GetAlphabeticWordsFromString(string text)
         {
             text = text.ToLower();
 
@@ -71,29 +94,6 @@ namespace TextAnalyzer
             return dictionary;
         }
 
-        private List<string> GetStopWords(string filepath)
-        {
-            List<string> words = new List<string>();
-            try
-            {
-                using (StreamReader stringReader = File.OpenText(filepath))
-                {
-                    string line;
-                    while ((line = stringReader.ReadLine()) != null)
-                    {
-                        words.Add(line);
-                    }
-                }
-
-                return words;
-            }
-            catch (FileNotFoundException e)
-            {
-                Console.WriteLine($"{filepath} was not found!");
-                return words;
-            }
-        }
-
         public static Dictionary<string, int> StemWords(Dictionary<string, int> dictionary)
         {
             PorterStemmer porterStemmer = new PorterStemmer();
@@ -114,6 +114,11 @@ namespace TextAnalyzer
             }
 
             return stemDictionary;
+        }
+
+        public static string PrintableAnalysis(Dictionary<string, int> words)
+        {
+            return "";
         }
     }
 }

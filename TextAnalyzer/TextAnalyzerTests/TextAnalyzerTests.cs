@@ -10,13 +10,13 @@ namespace TextAnalyzer
     public class TextAnalyzerShould
     {
         [Test]
-        public void GetAllNonAlphaWords()
+        public void GetAllAlphabeticWordsFromString()
         {
             // Arrange
             string text = "`~ ** 的  :) The quick   ** @#! brown fox jumps  @#! . >< over the lazy dog. :) بِيَ";
 
             // Act
-            Dictionary<string, int> words = TextAnalyzer.GetWords(text);
+            Dictionary<string, int> words = TextAnalyzer.GetAlphabeticWordsFromString(text);
 
             // Assert
             words.Count.ShouldBe(8);
@@ -99,6 +99,77 @@ namespace TextAnalyzer
             result.ShouldContainKey("run");
             result["jump"].ShouldBe(8);
             result["run"].ShouldBe(6);
+        }
+
+        [Test]
+        public void CreateStringToPrintThe20MostCommonWordsInDescendingOrder()
+        {
+            // Arrange
+
+            // note when there is a tie between two words that have same frequency, the word that comes first alphabetically wins
+            Dictionary<string, int> words = new Dictionary<string, int>
+            {
+                { "apple", 999 },
+                { "bananna", 999 },
+                { "cucumber", 999 },
+                { "jump", 1 },
+                { "run", 2 },
+                { "walk", 3 },
+                { "swim", 4 },
+                { "float", 5 },
+                { "boat", 6 },
+                { "fly", 7 },
+                { "drive", 8 },
+                { "tiptoe", 9 },
+                { "sneak", 10 },
+                { "venture", 11 },
+                { "orange", 12 },
+                { "tomato", 13 },
+                { "kiwi", 14 },
+                { "strawberry", 15 },
+                { "mango", 16 },
+                { "coconut", 17 },
+                { "pineapple", 18 },
+                { "blueberry", 19 },
+                { "raspberry", 20 },
+                { "grape", 21 },
+                { "airplane", 22 },
+                { "coffee", 23 },
+                { "sleep", 24 },
+                { "bed", 25 },
+                { "wake", 26 },
+                { "dream", 27 },
+                { "wish", 28 },
+                { "hope", 29 },
+                { "strive", 30 }
+            };
+
+            // Act
+            string result = TextAnalyzer.PrintableAnalysis(words);
+            string[] resultSplit = result.Split("\n");
+
+            // Assert
+            resultSplit[0].ShouldBe("apple 999");
+            resultSplit[1].ShouldBe("bananna 999");
+            resultSplit[2].ShouldBe("cucumber 999");
+            resultSplit[3].ShouldBe("strive 30");
+            resultSplit[4].ShouldBe("hope 29");
+            resultSplit[5].ShouldBe("wish 28");
+            resultSplit[6].ShouldBe("dream 27");
+            resultSplit[7].ShouldBe("wake 26");
+            resultSplit[8].ShouldBe("bed 25");
+            resultSplit[9].ShouldBe("sleep 24");
+            resultSplit[10].ShouldBe("coffee 23");
+            resultSplit[11].ShouldBe("airplane 22");
+            resultSplit[12].ShouldBe("grape 21");
+            resultSplit[13].ShouldBe("raspberry 20");
+            resultSplit[14].ShouldBe("blueberry 19");
+            resultSplit[15].ShouldBe("pineapple 18");
+            resultSplit[16].ShouldBe("coconut 17");
+            resultSplit[17].ShouldBe("mango 16");
+            resultSplit[18].ShouldBe("strawberry 15");
+            resultSplit[19].ShouldBe("kiwi 14");
+            resultSplit[20].ShouldBe("tomato 13");
         }
     }
 }
