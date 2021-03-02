@@ -1,5 +1,6 @@
 ﻿using NUnit.Framework;
 using Shouldly;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -146,9 +147,10 @@ namespace TextAnalyzer
 
             // Act
             string result = TextAnalyzer.PrintableAnalysis(words);
-            string[] resultSplit = result.Split("\n");
+            string[] resultSplit = result.Split("\n", StringSplitOptions.RemoveEmptyEntries);
 
             // Assert
+            resultSplit.Length.ShouldBe(20);
             resultSplit[0].ShouldBe("apple 999");
             resultSplit[1].ShouldBe("bananna 999");
             resultSplit[2].ShouldBe("cucumber 999");
@@ -169,7 +171,6 @@ namespace TextAnalyzer
             resultSplit[17].ShouldBe("mango 16");
             resultSplit[18].ShouldBe("strawberry 15");
             resultSplit[19].ShouldBe("kiwi 14");
-            resultSplit[20].ShouldBe("tomato 13");
         }
     }
 }

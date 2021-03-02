@@ -61,7 +61,7 @@ namespace TextAnalyzer
             Regex notAlphaOrSpace = new Regex("[^a-zA-Z\\s]");
             text = notAlphaOrSpace.Replace(text, string.Empty);
 
-            string[] words = text.Split(' ');
+            string[] words = text.Split(" ", StringSplitOptions.RemoveEmptyEntries);
 
             Dictionary<string, int> dictionary = new Dictionary<string, int>();
 
@@ -76,8 +76,6 @@ namespace TextAnalyzer
                     dictionary.Add(word, 1);
                 }
             }
-
-            dictionary.Remove(string.Empty);
 
             return dictionary;
         }
@@ -118,7 +116,19 @@ namespace TextAnalyzer
 
         public static string PrintableAnalysis(Dictionary<string, int> words)
         {
-            return "";
+            // Order by the word alphabetically ascending first, then order by word frequency
+            Dictionary<string, int> orderedWords = words.OrderBy(word => word.Key).OrderByDescending(word => word.Value)
+                .ToDictionary(x => x.Key, x => x.Value);
+
+            string output = "";
+
+            for (int i = 0; i < 20; i++)
+            {
+                KeyValuePair<string, int> word = orderedWords.ElementAt(i);
+                output += $"{word.Key} {word.Value}\n";
+            }
+
+            return output;
         }
     }
 }
