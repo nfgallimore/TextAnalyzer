@@ -61,6 +61,13 @@ namespace TextAnalyzer
 
         public static Dictionary<string, int> RemoveStopWords(Dictionary<string, int> dictionary, List<string> stopWords)
         {
+            foreach(string key in dictionary.Keys)
+            {
+                if (stopWords.Contains(key))
+                {
+                    dictionary.Remove(key);
+                }
+            }
             return dictionary;
         }
 
