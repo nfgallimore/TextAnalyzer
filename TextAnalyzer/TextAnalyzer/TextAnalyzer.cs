@@ -55,7 +55,36 @@ namespace TextAnalyzer
             }
 
             dictionary.Remove(string.Empty);
+
             return dictionary;
+        }
+
+        public static Dictionary<string, int> RemoveStopWords(Dictionary<string, int> dictionary)
+        {
+            return dictionary;
+        }
+
+        private List<string> GetStopWords(string filepath)
+        {
+            List<string> words = new List<string>();
+            try
+            {
+                using (StreamReader stringReader = File.OpenText(filepath))
+                {
+                    string line;
+                    while ((line = stringReader.ReadLine()) != null)
+                    {
+                        words.Add(line);
+                    }
+                }
+
+                return words;
+            }
+            catch (FileNotFoundException e)
+            {
+                Console.WriteLine($"{filepath} was not found!");
+                return words;
+            }
         }
     }
 }

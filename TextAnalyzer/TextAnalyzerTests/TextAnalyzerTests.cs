@@ -29,5 +29,15 @@ namespace TextAnalyzer
             words["lazy"].ShouldBe(1);
             words["dog"].ShouldBe(1);
         }
+
+        [Test]
+        public void RemoveStopWords()
+        {
+            // Arrange
+
+            // Act
+
+            // Assert
+        }
     }
 }
