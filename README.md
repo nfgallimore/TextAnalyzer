@@ -12,14 +12,14 @@ Each method in the TextAnalyzer class was developed using Test Driven Developmen
 First, I read the content of the text file into a string using the `TextAnalyzer.ReadFile` method. 
 #### 2. Get Stop Words
 Second, I read the content of the stopwords.txt file into a list of strings using the `TextAnalyzer.GetStopWords` method.
-#### 3. Get Words and Their Frequency in the String
-Third, I get the words and the number of times they occur in the string using the `TextAnalyzer.GetAlphabeticWordsFromString` method. 
+#### 3. Get Words and their Frequency in the String
+Third, I get the words and the number of times they occur in the string using the `TextAnalyzer.GetAlphabeticWordsFromString` method. I do this in two parts: first, I remove unwanted characters and split the string; second, I create a frequency dictionary of strings mapping to ints.
 ##### 3.1 Split String
-I then replace all non alphabetical and non space characters with String.empty to remove punctuation and any unneeded symbols. I then split the now space separated string (that contains only words) via the space characters. That results in an array of strings representing each word in the text file. Note that I call .toLower on this array and convert all the strings to lower case. 
+I replace all non alphabetical and non space characters with String.empty to remove punctuation and any unneeded symbols. I then split the now space separated string (that contains only words) via the space characters. That results in an array of strings representing each word in the text file. Note that I call .toLower on this array and convert all the strings to lower case. 
 ##### 3.2 Create Frequency Dictionary
 I then take the string array and convert it into a dictionary of <string, int> and sum up the amount of times that each string occurs into the int value of the dictionary.
 #### 4. Remove Stop Words
-Fourth, I remove all of the words that are contained in the stopWords list from the frequency dictionary using the `TextAnalyzer.RemoveStopWords` method.
+Fourth, I remove all words that are contained in the stopWords list from the frequency dictionary using the `TextAnalyzer.RemoveStopWords` method.
 #### 5. Create Stem Frequency Dictionary
 Finally, now that there is a mapping of how often each string occurs, I can take and convert this dictionary<string, int> into another dictionary<string, int> of just the stem words. I iterate over the original dictionary and find the stem of the key word, I then insert this as a new record or update an existing record in the new stemmed dictionary to track the number of times this stem word occurs. This stemmed dictionary is the final data structure of the program that is easily iterated through and printed. This is all done within the `TextAnalyzer.StemWords` method.
 
