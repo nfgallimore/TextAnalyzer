@@ -8,18 +8,18 @@ Each method in the TextAnalyzer class was developed using Test Driven Developmen
 - Each string is case insensitive. E.g., `the` was equal to `The`. 
 - If two strings were identical in frequency, the tie breaker to consider which ranked first was it's alphabetical order.
 ### Logic Execution
-#### Read File
+#### 1. Read File
 First I read the content of the text file into a string using the `TextAnalyzer.ReadFile` method. 
-#### 1. Get Stop Words
+#### 2. Get Stop Words
 Second I read the content of the stopwords.txt file into a list of strings using the `TextAnalyzer.GetStopWords` method.
-#### 2. Get Words and their Frequency In String
-##### Split String
+#### 3. Get Words and their Frequency In String
+##### 3.1 Split String
 I then replace all non alphabetical and non space characters with String.empty to remove punctuation and any unneeded symbols. I then split the now space separated string (that contains only words) via the space characters. That results in an array of strings representing each word in the text file. Note that I call .toLower on this array and convert all the strings to lower case. 
-##### Create Frequency Dictionary
+##### 3.2 Create Frequency Dictionary
 I then take the string array and convert it into a dictionary of <string, int> and sum up the amount of times that each string occurs into the int value of the dictionary.
-#### 3. Remove Stop Words
+#### 4. Remove Stop Words
 Next I remove all of the words that are contained in the stopWords list from the initial frequency dictionary.
-#### 4. Create Stem Frequency Dictionary
+#### 5. Create Stem Frequency Dictionary
 Now that there is a mapping of how often each string occurs, I can take and convert this dictionary<string, int> into another dictionary<string, int> of just the stem words. I iterate over the original dictionary and find the stem of the key word, I then insert this as a new record or update an existing record in the new stemmed dictionary to track the number of times this stem word occurs. This stemmed dictionary is the final data structure of the program that is easily iterated through and printed. This is all done within the `TextAnalyzer.StemWords` method.
 
 ## Output
