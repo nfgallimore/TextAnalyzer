@@ -21,7 +21,7 @@ I then take the string array and convert it into a dictionary of <string, int> a
 #### 4. Remove Stop Words
 Fourth, I remove all words that are contained in the stopWords list from the frequency dictionary using the `TextAnalyzer.RemoveStopWords` method.
 #### 5. Create Stem Frequency Dictionary
-Finally, now that there is a mapping of how often each string occurs, I can take and convert this dictionary<string, int> into another dictionary<string, int> of just the stem words. I iterate over the original dictionary and find the stem of the key word, I then insert this as a new record or update an existing record in the new stemmed dictionary to track the number of times this stem word occurs. This stemmed dictionary is the final data structure of the program that is easily iterated through and printed. This is all done within the `TextAnalyzer.StemWords` method.
+Finally, now that there is a mapping of how often each string occurs, I can take and convert this dictionary<string, int> into another dictionary<string, int> of just the stem words. I iterate over the original dictionary and find the stem of the key word, I then insert this as a new record or update an existing record in the new stemmed dictionary to track the number of times this stem word occurs. I then sort this in alphabetical order based on the key, and then in descending order by frequency. This stemmed dictionary is the final data structure of the program that is easily iterated through and printed.This is all done within the `TextAnalyzer.StemWords` method.
 
 ## Output
 ### Declaration of Independence
