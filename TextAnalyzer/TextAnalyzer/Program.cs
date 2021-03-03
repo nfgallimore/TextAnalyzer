@@ -24,8 +24,6 @@ namespace TextAnalyzer
 
             Console.WriteLine(TextAnalyzer.PrintableAnalysis(aliceAnalysis));
             Console.WriteLine(TextAnalyzer.PrintableAnalysis(declarationAnalysis));
-
-            Console.WriteLine(new PorterStemmer().StemWord("alice"));
         }
 
         private static Dictionary<string, int> AnalyzeString(string input)
