@@ -5,9 +5,18 @@ To compile the program you should have Visual Studio and .NET Core 3.1 installed
 ### Test Driven Development
 Each method in the TextAnalyzer class was developed using Test Driven Development. You can check the commits to view the stages and progression of how I wrote this program using TDD. 
 ### Assumptions
-Two important assumptions I made were that each string was to be treated as case insensitive. E.g., `the` was equal to `The`. The second assumption I had to make was the ordering for the final most common output. I implemented a tie breaker in case there were two strings that had the same frequency: alphabetical order. Thus, if two strings were identical in frequency, the tie breaker to consider which ranked first was it's alphabetical order.
+- Each string is case insensitive. E.g., `the` was equal to `The`. 
+- If two strings were identical in frequency, the tie breaker to consider which ranked first was it's alphabetical order.
 ### Logic Execution
-First I read in the text file using the TextAnalyzer.ReadFile method. With that string I replace all non alphabetical (or space) characters with String.empty. I then split the string using the space characters.
+#### ReadFile
+First I read the content of the text file into a string using the `TextAnalyzer.ReadFile` method. 
+#### Split String
+I then replace all non alphabetical and non space characters with String.empty to remove punctuation and any unneeded symbols. I then split the now space separated string (that contains only words) via the space characters. That results in an array of strings representing each word in the text file. Note that I call .toLower on this array and convert all the strings to lower case. 
+#### Create Frequency Dictionary
+I then take the string array and convert it into a dictionary of <string, int> and sum up the amount of times that each string occurs into the int value of the dictionary. 
+#### Create Stem Frequency Dictionary
+Now that there is a mapping of how often each string occurs, I can take and convert this dictionary<string, int> into another dictionary<string, int> of just the stem words. I iterate over the original dictionary and find the stem of the key word, I then insert this as a new record or update an existing record in the new stemmed dictionary to track the number of times this stem word occurs. This stemmed dictionary is the final data structure of the program that is easily iterated through and printed.
+
 ## Output
 ### Declaration of Independence
     right 10
