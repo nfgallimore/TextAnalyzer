@@ -9,18 +9,19 @@ Each method in the TextAnalyzer class was developed using Test Driven Developmen
 - If two strings were identical in frequency, the tie breaker to consider which ranked first was it's alphabetical order.
 ### Logic Execution
 #### 1. Read File
-First I read the content of the text file into a string using the `TextAnalyzer.ReadFile` method. 
+First, I read the content of the text file into a string using the `TextAnalyzer.ReadFile` method. 
 #### 2. Get Stop Words
-Second I read the content of the stopwords.txt file into a list of strings using the `TextAnalyzer.GetStopWords` method.
+Second, I read the content of the stopwords.txt file into a list of strings using the `TextAnalyzer.GetStopWords` method.
 #### 3. Get Words and their Frequency In String
+Third, I get the words and the number of times they occur in the string using the `TextAnalyzer.GetAlphabeticWordsFromString` method. 
 ##### 3.1 Split String
 I then replace all non alphabetical and non space characters with String.empty to remove punctuation and any unneeded symbols. I then split the now space separated string (that contains only words) via the space characters. That results in an array of strings representing each word in the text file. Note that I call .toLower on this array and convert all the strings to lower case. 
 ##### 3.2 Create Frequency Dictionary
 I then take the string array and convert it into a dictionary of <string, int> and sum up the amount of times that each string occurs into the int value of the dictionary.
 #### 4. Remove Stop Words
-Next I remove all of the words that are contained in the stopWords list from the initial frequency dictionary.
+Fourth, I remove all of the words that are contained in the stopWords list from the frequency dictionary using the `TextAnalyzer.RemoveStopWords` method.
 #### 5. Create Stem Frequency Dictionary
-Now that there is a mapping of how often each string occurs, I can take and convert this dictionary<string, int> into another dictionary<string, int> of just the stem words. I iterate over the original dictionary and find the stem of the key word, I then insert this as a new record or update an existing record in the new stemmed dictionary to track the number of times this stem word occurs. This stemmed dictionary is the final data structure of the program that is easily iterated through and printed. This is all done within the `TextAnalyzer.StemWords` method.
+Finally, now that there is a mapping of how often each string occurs, I can take and convert this dictionary<string, int> into another dictionary<string, int> of just the stem words. I iterate over the original dictionary and find the stem of the key word, I then insert this as a new record or update an existing record in the new stemmed dictionary to track the number of times this stem word occurs. This stemmed dictionary is the final data structure of the program that is easily iterated through and printed. This is all done within the `TextAnalyzer.StemWords` method.
 
 ## Output
 ### Declaration of Independence
