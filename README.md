@@ -12,7 +12,7 @@ Each method in the TextAnalyzer class was developed using Test Driven Developmen
 First, I read the content of the text file into a string using the `TextAnalyzer.ReadFile` method. 
 #### 2. Get Stop Words
 Second, I read the content of the stopwords.txt file into a list of strings using the `TextAnalyzer.GetStopWords` method.
-#### 3. Get Words and their Frequency In String
+#### 3. Get Words and Their Frequency in the String
 Third, I get the words and the number of times they occur in the string using the `TextAnalyzer.GetAlphabeticWordsFromString` method. 
 ##### 3.1 Split String
 I then replace all non alphabetical and non space characters with String.empty to remove punctuation and any unneeded symbols. I then split the now space separated string (that contains only words) via the space characters. That results in an array of strings representing each word in the text file. Note that I call .toLower on this array and convert all the strings to lower case. 
